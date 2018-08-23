@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Basic FTP Image') {
             steps {
-	        sh 'docker build -f Dockerfile.SSH -t yi/ftp:${docker_tag} .'    
+	        sh 'docker build -f Dockerfile -t yi/ftp:${docker_tag} .'    
             }
         }
 		    stage('Test The Image For Mapped Ports') { 
