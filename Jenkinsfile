@@ -37,8 +37,8 @@ pipeline {
                 echo 'Removing Temp Archive.'  
                 rm $WORKSPACE/yi-ftp-${docker_tag}.tar
                    ''' 
-		        }
-		   }			   
+	     }
+	 }			   
   }
 	post {
             always {
