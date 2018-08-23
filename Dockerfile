@@ -5,6 +5,8 @@ LABEL MAINTAINER="Igor Rabkin<igor.rabkin@xiaoyi.com>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    nano \
+    lsof \
     pv \
     vsftpd && \
     apt-get install -f && \
