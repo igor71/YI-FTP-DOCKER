@@ -9,6 +9,6 @@ docker run -d -P --name vsftpd --volumes-from YOUR-WEB-SERVER yi-vsftpd:0.0
 ```
 To to add any user, you may want to run another (temporary) container that imports its volumes. Run it with:
 ```
-docker run -i -t --name config.vsftpd --volumes-from vsftpd yi-vsftpd:0.0
+docker run -it --name add-user-vsftpd --volumes-from vsftpd yi-vsftpd:0.0
 ```
 Then you can use the useradd system command to define them and having the same accounts also on the main vsftpd container.
