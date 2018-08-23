@@ -21,6 +21,7 @@ RUN sed -i "s/anonymous_enable=NO/anonymous_enable=YES/" /etc/vsftpd.conf && \
     sed -i "s/listen=NO/listen=YES/" /etc/vsftpd.conf && \
     sed -i "s/listen_ipv6=YES/listen_ipv6=NO/" /etc/vsftpd.conf && \
   
+    sed -i '/listen=YES/a # When enabled, and vsftpd is started in "listen" mode, vsftpd will background the listener process '\\n'background=NO' /etc/vsftpd.conf && \
     sed -i '/anonymous_enable=YES/a # Stop prompting for a password on the command line '\\n'no_anon_password=YES' /etc/vsftpd.conf && \
     sed -i '/no_anon_password=YES/a # Point anonymous user to the ftp root directory '\\n'anon_root=/var/ftp/ '\\n'# Show the user and group as ftp:ftp, regardless of the owner' /etc/vsftpd.conf && \
     sed -i '/# Show the user and group as ftp:ftp, regardless of the owner/a hide_ids=YES '\\n'# Limit the range of ports that can be used for passive FTP' /etc/vsftpd.conf && \
