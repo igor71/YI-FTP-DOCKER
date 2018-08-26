@@ -1,5 +1,6 @@
-# Ubuntu-based container for vsftpd
-# VERSION               0.0
+# Ubuntu-based anonymous ftp server docker image
+# VERSION ${docker_tag}
+
 FROM ubuntu:16.04
 LABEL MAINTAINER="Igor Rabkin<igor.rabkin@xiaoyi.com>"
 
