@@ -14,7 +14,12 @@ FTPD_BANNER=${FTPD_BANNER:-"Welcome To YI Public FTP Server"}
 
 [ -f /etc/vsftpd.conf ] || cat <<EOF > /etc/vsftpd.conf
 listen=YES
+# Allow anonymous FTP? (Disabled by default).
 anonymous_enable=YES
+# Stop prompting for a password on the command line
+no_anon_password=YES
+#Show the user and group as ftp:ftp, regardless of the owner
+hide_ids=YES
 dirmessage_enable=YES
 use_localtime=YES
 connect_from_port_20=YES
@@ -22,7 +27,9 @@ write_enable=NO
 seccomp_sandbox=NO
 xferlog_std_format=NO
 log_ftp_protocol=YES
+#Point anonymous user to the ftp root directory
 anon_root=${ANON_ROOT}
+# Limit the range of ports that can be used for passive FTP
 pasv_max_port=${MAX_PORT}
 pasv_min_port=${MIN_PORT}
 max_per_ip=${MAX_PER_IP}
@@ -31,5 +38,8 @@ max_clients=${MAX_CLIENTS}
 anon_max_rate=${MAX_RATE}
 ftpd_banner=${FTPD_BANNER}
 EOF
+
+# Remove any trailing space and CR characters from /etc/vsftpd.conf
+sed -i 's,\r,,;s, *$,,' /etc/vsftpd.conf
 
 /usr/sbin/vsftpd "$@"
