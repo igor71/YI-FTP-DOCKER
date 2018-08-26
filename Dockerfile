@@ -29,7 +29,7 @@ RUN sed -i "s/anonymous_enable=NO/anonymous_enable=YES/" /etc/vsftpd.conf && \
     echo " ### Removing any trailing space and CR characters from /etc/vsftpd.conf file ###" && \
     sed -i 's,\r,,;s, *$,,' /etc/vsftpd.conf
 
-VOLUME /etc
+VOLUME ["/var/ftp/pub"]
 
 EXPOSE 21
 
