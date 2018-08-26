@@ -20,7 +20,7 @@ It is posible to create & run docker using yml file:
 `sudo docker-compose up -d`
 * (`-d` option will run docker container detached)
 
-### Accessinf ftp folder
+### Accessing ftp folder
 
 * Open in browser `ftp://<IP_Address>`
 * Form CLI:
