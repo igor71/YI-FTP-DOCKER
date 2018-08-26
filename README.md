@@ -3,10 +3,36 @@ Very light vsftpd installation based on Ubuntu
 
 By design, it will only run the vsftpd executable, exposing the FTP standard ports. This image is meant for running something like a public read-only share. User accounts are not supported and all data access is meant to be read only via ftp anonymous login. It is very handy when you want to provide FTP access to the content of some website from another container, importing its volumes.
 
-You can execute it with something like:
+### Up-&-Running
+FTP docker created by default using Jenkins Pipeline job. You can execute it with something like:
 ```
 docker run -d --name vsftpd -p 21:21 -p 65500-65515:65500-65515 -v /media/common/DOCKER_IMAGES/Tensorflow:/var/ftp:ro yi/ftp:0.0
 ```
+It is posicle to create and run docker using yml file:
+
+* Make sure docker-compose is installed:
+`sudo pip install docker-compose`
+* Clone the repository:
+`git clone --branch=master --depth=1 https://github.com/igor71/YI-FTP-DOCKER`
+* cd to YI-FTP-DOCKER directory
+`cd YI-FTP-DOCKER`
+* Run following command: 
+`sudo docker-compose up -d`
+* (`-d` option will run docker container detached)
+
+### Accessinf ftp folder
+
+* Open in browser `ftp://<IP_Address>`
+* Form CLI:
+```
+ftp://<IP_Address>
+220 Welcome To YI Public FTP Server
+Name (192.168.1.110:irabkin): anonymous
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp>
+```
+
 #### Runtime Configuration Options
 
 There are a series of available variables you can tune at your own discretion. The defaults are most likely acceptable for most use cases.
