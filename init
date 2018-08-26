@@ -20,7 +20,6 @@ anonymous_enable=YES
 no_anon_password=YES
 #Show the user and group as ftp:ftp, regardless of the owner
 hide_ids=YES
-secure_chroot_dir=/var/run/vsftpd/empty
 dirmessage_enable=YES
 use_localtime=YES
 connect_from_port_20=YES
