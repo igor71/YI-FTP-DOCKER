@@ -11,7 +11,7 @@ docker run -d --name vsftpd -p 21:21 -p 65500-65515:65500-65515 -v /media/common
 
 There are a series of available variables you can tune at your own discretion. The defaults are most likely acceptable for most use cases.
 
-* `ANON_ROOT` - The directory in the container which vsftpd will serve out (default: `/var/ftp`)
+* `ANON_ROOT` - The directory in the container which vsftpd will serve out (default: `/var/ftp/pub`)
 * `MAX_PORT` - The maximum port for pasv communiation (default: `65515`)
 * `MIN_PORT` - The minimum port for pasv communication (default: `65500`)
 * `MAX_PER_IP` - The maximum connections from one host (default: `2`)
@@ -24,11 +24,6 @@ There are a series of available variables you can tune at your own discretion. T
 #### Notes
 
 * Ensure you use *:ro* at the end of your bind mount declaration!
-* We utilize ftp passive mode so we can define the ports we need and not have to use `--net=host`. This is the preferred way to use ftp!
+* In current configuration we're utilize ftp passive mode so we can define the ports we need and not have to use `--net=host`. This is the preferred way to use ftp!
 * You can find some great documentation on configuration options and other vsftpd information on the [Archwiki](https://wiki.archlinux.org/index.php/Very_Secure_FTP_Daemon) and in the [man page](https://security.appspot.com/vsftpd/vsftpd_conf.html)
 
-To to add any user, you may want to run another (temporary) container that imports its volumes. Run it with:
-```
-docker run -it --name add-user-vsftpd --volumes-from vsftpd yi-vsftpd:0.0
-```
-Then you can use the useradd system command to define them and having the same accounts also on the main vsftpd container.
