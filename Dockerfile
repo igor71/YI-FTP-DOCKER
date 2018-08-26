@@ -16,16 +16,25 @@ RUN cp /etc/vsftpd.conf /etc/vsftpd.conf.orig && \
     mkdir -p /var/ftp/pub && \
     chown nobody:nogroup /var/ftp/pub 
     
-RUN sed -i "s/anonymous_enable=NO/anonymous_enable=YES/" /etc/vsftpd.conf && \
-    sed -i "s/local_enable=YES/local_enable=NO/" /etc/vsftpd.conf && \
-    sed -i "s/listen=NO/listen=YES/" /etc/vsftpd.conf && \
-    sed -i "s/listen_ipv6=YES/listen_ipv6=NO/" /etc/vsftpd.conf && \
- 
-    sed -i '/anonymous_enable=YES/a # Stop prompting for a password on the command line '\\n'no_anon_password=YES' /etc/vsftpd.conf && \
-    sed -i '/no_anon_password=YES/a # Point anonymous user to the ftp root directory '\\n'anon_root=/var/ftp/ '\\n'# Show the user and group as ftp:ftp, regardless of the owner' /etc/vsftpd.conf && \
-    sed -i '/# Show the user and group as ftp:ftp, regardless of the owner/a hide_ids=YES '\\n'# Limit the range of ports that can be used for passive FTP' /etc/vsftpd.conf && \
-    sed -i '/# Limit the range of ports that can be used for passive FTP/a pasv_min_port=65500 '\\n'pasv_max_port=65515' /etc/vsftpd.conf && \
-    echo " ### Removing any trailing space and CR characters from /etc/vsftpd.conf file ###" && \
+RUN [ -f /etc/vsftpd.conf ] || cat <<EOF > /etc/vsftpd.conf
+    listen=YES
+    anonymous_enable=YES
+    dirmessage_enable=YES
+    use_localtime=YES
+    connect_from_port_20=YES
+    write_enable=NO
+    seccomp_sandbox=NO
+    xferlog_std_format=NO
+    log_ftp_protocol=YES
+    anon_root=/var/ftp
+    pasv_max_port=65500
+    pasv_min_port=65515
+    max_per_ip=5
+    max_login_fails=3
+    max_clients=10
+    anon_max_rate=0
+    ftpd_banner="Welcome to an awesome YI public FTP Server"
+    EOF && \
     sed -i 's,\r,,;s, *$,,' /etc/vsftpd.conf
 
 VOLUME ["/var/ftp"]
