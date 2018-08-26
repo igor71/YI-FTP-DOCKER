@@ -17,6 +17,7 @@ RUN cp /etc/vsftpd.conf /etc/vsftpd.conf.orig && \
     chown nobody:nogroup /var/ftp/pub 
     
 COPY init /
+RUN chmod u+x /init
  
 VOLUME ["/var/ftp"]
 
