@@ -1,5 +1,6 @@
-version: '2'
-vsftpd:
+version: '3'
+services:
+  vsftpd:
     build: .
     ports:
         - "20-21:20-21"
