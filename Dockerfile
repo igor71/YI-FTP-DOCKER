@@ -31,6 +31,7 @@ RUN sed -i "s/anonymous_enable=NO/anonymous_enable=YES/" /etc/vsftpd.conf && \
 
 VOLUME ["/var/ftp/pub"]
 
-EXPOSE 21
+EXPOSE 20-21
+EXPOSE 65500-65515
 
 CMD /usr/sbin/vsftpd
