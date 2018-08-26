@@ -39,7 +39,4 @@ anon_max_rate=${MAX_RATE}
 ftpd_banner=${FTPD_BANNER}
 EOF
 
-# Remove any trailing space and CR characters from /etc/vsftpd.conf
-sed -i 's,\r,,;s, *$,,' /etc/vsftpd.conf
-
 /usr/sbin/vsftpd "$@"
