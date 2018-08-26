@@ -1,5 +1,7 @@
+version: '2'
 ftpd:
-    build: .
+    image: yi/ftp:0.0
+    container_name: vsftpd
     ports:
         - "20-21:20-21"
         - "65500-65515:65500-65515"
