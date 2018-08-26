@@ -7,7 +7,7 @@ You can execute it with something like:
 ```
 docker run -d -P --name vsftpd --volumes-from YOUR-WEB-SERVER yi-vsftpd:0.0
 
-docker run -d --name vsftpd -p 21:21 -v /media/common/DOCKER_IMAGES/Tensorflow:/var/ftp/pub:ro yi/ftp:0.0
+docker run -d --name vsftpd -p 21:21 -p 65500-65515:65500-65515 -v /media/common/DOCKER_IMAGES/Tensorflow:/var/ftp:ro yi/ftp:0.0
 ```
 To to add any user, you may want to run another (temporary) container that imports its volumes. Run it with:
 ```
