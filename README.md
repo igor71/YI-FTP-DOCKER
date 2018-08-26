@@ -8,7 +8,7 @@ FTP docker created by default using Jenkins Pipeline job. You can execute it wit
 ```
 docker run -d --name vsftpd -p 21:21 -p 65500-65515:65500-65515 -v /media/common/DOCKER_IMAGES/Tensorflow:/var/ftp:ro yi/ftp:0.0
 ```
-It is posicle to create and run docker using yml file:
+It is posible to create & run docker using yml file:
 
 * Make sure docker-compose is installed:
 `sudo pip install docker-compose`
