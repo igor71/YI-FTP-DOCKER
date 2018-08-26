@@ -1,9 +1,9 @@
 version: '2'
-ftpd:
-    image: yi/ftp:0.0
-    container_name: vsftpd
+vsftpd:
+    build: .
     ports:
         - "20-21:20-21"
         - "65500-65515:65500-65515"
+    container_name: vsftpd
     volumes:
-        - "/media/common/DOCKER_IMAGES/Tensorflow:/var/ftp:ro
+        - "/media/common/DOCKER_IMAGES/Tensorflow:/var/ftp:ro"
