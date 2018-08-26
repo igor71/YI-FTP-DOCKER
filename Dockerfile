@@ -15,7 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN cp /etc/vsftpd.conf /etc/vsftpd.conf.orig && \
     rm /etc/vsftpd.conf && \
     mkdir -p /var/ftp/pub && \
-    chown nobody:nogroup /var/ftp/pub
+    chown nobody:nogroup /var/ftp/pub && \
+    mkdir -p /var/run/vsftpd/empty
+    
     
 COPY init /
 RUN chmod u+x /init
